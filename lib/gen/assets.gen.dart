@@ -20,35 +20,39 @@ class $AssetsIconsGen {
   /// File path: assets/icons/google.svg
   String get google => 'assets/icons/google.svg';
 
-  /// File path: assets/icons/logo.svg
-  String get logo => 'assets/icons/logo.svg';
-
-  /// File path: assets/icons/success.svg
-  String get success => 'assets/icons/success.svg';
+  /// File path: assets/icons/successmark.svg
+  String get successmark => 'assets/icons/successmark.svg';
 
   /// List of all assets
-  List<String> get values => [apple, google, logo, success];
+  List<String> get values => [apple, google, successmark];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/logo.png
+  AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
+
   /// File path: assets/images/onboardingimage.jpg
   AssetGenImage get onboardingimage =>
       const AssetGenImage('assets/images/onboardingimage.jpg');
 
+  /// File path: assets/images/splash_android12.png
+  AssetGenImage get splashAndroid12 =>
+      const AssetGenImage('assets/images/splash_android12.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [onboardingimage];
+  List<AssetGenImage> get values => [logo, onboardingimage, splashAndroid12];
 }
 
-class $AssetsTranslationGen {
-  const $AssetsTranslationGen();
+class $AssetsTranslationsGen {
+  const $AssetsTranslationsGen();
 
-  /// File path: assets/translation/ar.json
-  String get ar => 'assets/translation/ar.json';
+  /// File path: assets/translations/ar.json
+  String get ar => 'assets/translations/ar.json';
 
-  /// File path: assets/translation/en.json
-  String get en => 'assets/translation/en.json';
+  /// File path: assets/translations/en.json
+  String get en => 'assets/translations/en.json';
 
   /// List of all assets
   List<String> get values => [ar, en];
@@ -59,7 +63,7 @@ class Assets {
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
-  static const $AssetsTranslationGen translation = $AssetsTranslationGen();
+  static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
 }
 
 class AssetGenImage {
@@ -129,8 +133,15 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({AssetBundle? bundle, String? package}) {
-    return AssetImage(_assetName, bundle: bundle, package: package);
+  ImageProvider provider({
+    AssetBundle? bundle,
+    String? package,
+  }) {
+    return AssetImage(
+      _assetName,
+      bundle: bundle,
+      package: package,
+    );
   }
 
   String get path => _assetName;

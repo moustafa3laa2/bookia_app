@@ -11,6 +11,8 @@ void main() async {
     ScreenUtil.ensureScreenSize(),
   ]);
   runApp(
+    //dart run easy_localization:generate --source-dir ./assets/translations -f keys -o locale_keys.g.dart -O lib/gen
+    //dart run build_runner build
     EasyLocalization(
       supportedLocales: [Locale('en'), Locale('ar')],
       path: 'assets/translations',
