@@ -14,7 +14,7 @@ class CustomText extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          text1,
+          "$text1 ",
           style: AppTextStyle.text15Regular,
         ),
         InkWell(

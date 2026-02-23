@@ -3,11 +3,13 @@ import 'package:bookia/core/widgets/arrow_back_icon.dart';
 import 'package:bookia/features/auth/presentation/password_changed_screen.dart';
 import 'package:bookia/features/auth/presentation/widgets/custom_text.dart';
 import 'package:bookia/features/auth/presentation/widgets/otp_row.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_style.dart';
+import '../../../gen/locale_keys.g.dart';
 
 class OtpVerificationScreen extends StatelessWidget {
   const OtpVerificationScreen({super.key});
@@ -26,14 +28,14 @@ class OtpVerificationScreen extends StatelessWidget {
                 height: 29.h,
               ),
               Text(
-                "OTP Verification",
+                LocaleKeys.otpVerify.tr(),
                 style: AppTextStyle.text30Regular,
               ),
               SizedBox(
                 height: 10.h,
               ),
               Text(
-                "Enter the verification code we just sent on your email address.",
+                LocaleKeys.otpSentences.tr(),
                 style: AppTextStyle.text15Regular
                     .copyWith(color: AppColors.darkGrayColor),
               ),
@@ -44,9 +46,9 @@ class OtpVerificationScreen extends StatelessWidget {
               SizedBox(
                 height: 35.h,
               ),
-              AppButton(title: "Verify",onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>PasswordChangedScreen())),),
+              AppButton(title: LocaleKeys.verify.tr(),onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>PasswordChangedScreen())),),
               Spacer(),
-              CustomText(text1: "Didn’t received code? ", text2: "Resend"),
+              CustomText(text1: LocaleKeys.didNotReceivedCode.tr(), text2: LocaleKeys.resend.tr()),
               SizedBox(
                 height: 26.h,
               ),

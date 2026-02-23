@@ -1,4 +1,5 @@
 import 'package:bookia/features/welcome/presentation/welcome_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -12,6 +13,9 @@ class BookiaApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         child: MaterialApp(
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
           theme: ThemeData(fontFamily: "DMSerifDisplay"),
           debugShowCheckedModeBanner: false,
           home: WelcomeScreen(),

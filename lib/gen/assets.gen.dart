@@ -20,11 +20,14 @@ class $AssetsIconsGen {
   /// File path: assets/icons/google.svg
   String get google => 'assets/icons/google.svg';
 
+  /// File path: assets/icons/hidepassword.svg
+  String get hidepassword => 'assets/icons/hidepassword.svg';
+
   /// File path: assets/icons/successmark.svg
   String get successmark => 'assets/icons/successmark.svg';
 
   /// List of all assets
-  List<String> get values => [apple, google, successmark];
+  List<String> get values => [apple, google, hidepassword, successmark];
 }
 
 class $AssetsImagesGen {

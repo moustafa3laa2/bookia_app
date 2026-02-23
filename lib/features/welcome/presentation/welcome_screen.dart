@@ -33,7 +33,7 @@ class WelcomeScreen extends StatelessWidget {
                 height: 28.h,
               ),
               Text(
-                LocaleKeys.OrderYourBookNow.tr(),
+                LocaleKeys.orderYourBookNow.tr(),
                 style: AppTextStyle.text20Regular,
               ),
               Spacer(),

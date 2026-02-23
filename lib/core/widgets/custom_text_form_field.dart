@@ -5,17 +5,25 @@ import '../theme/app_text_style.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final String hintText;
-  const CustomTextFormField({super.key, required this.hintText});
+  final Widget? suffixIcon;
+  final TextInputType? keyboardType;
+  final bool obscureText;
+  const CustomTextFormField(
+      {super.key, required this.hintText, this.suffixIcon, this.keyboardType,  this.obscureText=false});
 
   @override
   Widget build(BuildContext context) {
-    return  TextFormField(
+    return TextFormField(
+      obscureText: obscureText,
+      keyboardType: keyboardType,
       cursorColor: AppColors.mainColor,
       decoration: InputDecoration(
-        hintStyle: AppTextStyle.text15Regular.copyWith(color: Color(0xff8391A1)),
+        hintStyle:
+            AppTextStyle.text15Regular.copyWith(color: Color(0xff8391A1)),
         hintText: hintText,
         filled: true,
         fillColor: AppColors.grayColor,
+        suffixIcon: suffixIcon,
         border: OutlineInputBorder(),
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.r),
