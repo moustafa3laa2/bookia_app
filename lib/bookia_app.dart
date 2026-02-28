@@ -1,7 +1,8 @@
-import 'package:bookia/features/welcome/presentation/welcome_screen.dart';
+import 'package:bookia/core/routing/app_router.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'core/routing/routes.dart';
 
 class BookiaApp extends StatelessWidget {
   const BookiaApp({super.key});
@@ -18,7 +19,8 @@ class BookiaApp extends StatelessWidget {
           locale: context.locale,
           theme: ThemeData(fontFamily: "DMSerifDisplay"),
           debugShowCheckedModeBanner: false,
-          home: WelcomeScreen(),
+          onGenerateRoute: AppRouter.generateRoute,
+          initialRoute: Routes.welcomeScreen,
         ));
   }
 }

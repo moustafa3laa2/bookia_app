@@ -3,16 +3,17 @@ import 'package:bookia/core/theme/app_text_style.dart';
 import 'package:bookia/core/widgets/app_button.dart';
 import 'package:bookia/core/widgets/arrow_back_icon.dart';
 import 'package:bookia/core/widgets/custom_text_form_field.dart';
-import 'package:bookia/features/auth/presentation/forget_password_screen.dart';
-import 'package:bookia/features/auth/presentation/register_screen.dart';
+import 'package:bookia/features/auth/cubit/auth_cubit.dart';
 import 'package:bookia/features/auth/presentation/widgets/custom_text.dart';
 import 'package:bookia/features/auth/presentation/widgets/sign_in_with_card.dart';
-import 'package:bookia/features/home/presentation/home_screen.dart';
 import 'package:bookia/gen/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import '../../../core/helper/extensions.dart';
+import '../../../core/routing/routes.dart';
 import '../../../gen/assets.gen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -23,13 +24,22 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
   bool isVisible = false;
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 22),
+          padding: EdgeInsets.symmetric(horizontal: 22.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -45,6 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 32.h,
               ),
               CustomTextFormField(
+                controller: emailController,
                 keyboardType: TextInputType.emailAddress,
                 hintText: LocaleKeys.enterYourEmail.tr(),
               ),
@@ -52,16 +63,27 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 15.h,
               ),
               CustomTextFormField(
+                controller: passwordController,
                 obscureText: !isVisible,
                 keyboardType: TextInputType.visiblePassword,
                 hintText: LocaleKeys.enterYourPassword.tr(),
                 suffixIcon: Padding(
                   padding: const EdgeInsets.all(12),
-                  child: isVisible?IconButton(onPressed: (){setState(() {
-                    isVisible=false;
-                  });}, icon: Icon(Icons.remove_red_eye_outlined)): InkWell(onTap: (){setState(() {
-                    isVisible=true;
-                  });},child: SvgPicture.asset(Assets.icons.hidepassword)),
+                  child: isVisible
+                      ? IconButton(
+                          onPressed: () {
+                            setState(() {
+                              isVisible = false;
+                            });
+                          },
+                          icon: Icon(Icons.remove_red_eye_outlined))
+                      : InkWell(
+                          onTap: () {
+                            setState(() {
+                              isVisible = true;
+                            });
+                          },
+                          child: SvgPicture.asset(Assets.icons.hidepassword)),
                 ),
               ),
               SizedBox(
@@ -71,10 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   InkWell(
-                    onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ForgetPasswordScreen())),
+                    onTap: () => context.pushNamed(Routes.forgetPasswordScreen),
                     child: Text(
                       LocaleKeys.forgetPassword.tr(),
                       style: AppTextStyle.text15Regular
@@ -86,13 +105,51 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: 30.h,
               ),
-              AppButton(title: LocaleKeys.login.tr(),onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen())),),
+              BlocListener<AuthCubit, AuthState>(
+                listener: (context, state) {
+                  if (state is AuthLoadingState) {
+                    showDialog(
+                        context: context,
+                        builder: (context) => Center(
+                              child: CircularProgressIndicator(
+                                color: AppColors.mainColor,
+                              ),
+                            ),
+                        barrierDismissible: false);
+                  } else if (state is AuthErrorState) {
+                    context.pop();
+                    showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                              title: Text(
+                                "ERROR !",
+                                style: AppTextStyle.text20Regular,
+                              ),
+                              content: Text(
+                                "some thing wrong please try again",
+                                style: AppTextStyle.text18Regular,
+                              ),
+                            ));
+                  } else if (state is AuthSuccessState) {
+                    context.pushNamedAndRemoveUntil(Routes.homeScreen);
+                  }
+                },
+                child: AppButton(
+                  title: LocaleKeys.login.tr(),
+                  onTap: () {
+                    context.read<AuthCubit>().login(
+                          email: emailController.text,
+                          password: passwordController.text,
+                        );
+                  },
+                ),
+              ),
               SizedBox(
                 height: 34.h,
               ),
               Center(
                   child: Text(
-                    LocaleKeys.or.tr(),
+                LocaleKeys.or.tr(),
                 style: AppTextStyle.text15Regular
                     .copyWith(color: AppColors.darkGrayColor),
               )),
@@ -100,18 +157,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 21.h,
               ),
               SignInWithCard(
-                  title: LocaleKeys.signInWithGoogle.tr(), image: Assets.icons.google),
+                  title: LocaleKeys.signInWithGoogle.tr(),
+                  image: Assets.icons.google),
               SizedBox(
                 height: 34.h,
               ),
               SignInWithCard(
-                  title: LocaleKeys.signInWithApple.tr(), image: Assets.icons.apple),
+                  title: LocaleKeys.signInWithApple.tr(),
+                  image: Assets.icons.apple),
               Spacer(),
               CustomText(
-                  onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => RegisterScreen())),
+                  onTap: () => context.pushNamed(Routes.registerScreen),
                   text1: LocaleKeys.doNotHaveAccount.tr(),
                   text2: LocaleKeys.registerNow.tr()),
               SizedBox(

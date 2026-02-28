@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/theme/app_colors.dart';
+
 class OtpTextField extends StatelessWidget {
   const OtpTextField({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  SizedBox(
+    return SizedBox(
       width: 50.w,
       height: 55.h,
       child: TextFormField(

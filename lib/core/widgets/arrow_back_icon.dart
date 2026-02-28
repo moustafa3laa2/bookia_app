@@ -1,6 +1,6 @@
+import 'package:bookia/core/helper/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../theme/app_colors.dart';
 
 class ArrowBackIcon extends StatelessWidget {
@@ -11,9 +11,11 @@ class ArrowBackIcon extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           border: Border.all(color: AppColors.borderColor),
-          borderRadius: BorderRadius.circular(12.r)
+          borderRadius: BorderRadius.circular(12.r)),
+      child: IconButton(
+        onPressed: () => context.pop(),
+        icon: Icon(Icons.arrow_back_ios_new_outlined),
       ),
-      child: IconButton(onPressed: ()=>Navigator.pop(context), icon: Icon(Icons.arrow_back_ios_new_outlined),),
     );
   }
 }

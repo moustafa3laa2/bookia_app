@@ -7,19 +7,30 @@ class OtpRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: [
-      OtpTextField(),
-      SizedBox(width: 7.w,),
-      OtpTextField(),
-      SizedBox(width: 7.w,),
-      OtpTextField(),
-      SizedBox(width: 7.w,),
-      OtpTextField(),
-      SizedBox(width: 7.w,),
-      OtpTextField(),
-      SizedBox(width: 7.w,),
-      OtpTextField(),
-
-    ],);
+    return Row(
+      children: [
+        OtpTextField(),
+        SizedBox(
+          width: 6.w,
+        ),
+        OtpTextField(),
+        SizedBox(
+          width: 6.w,
+        ),
+        OtpTextField(),
+        SizedBox(
+          width: 6.w,
+        ),
+        OtpTextField(),
+        SizedBox(
+          width: 6.w,
+        ),
+        OtpTextField(),
+        SizedBox(
+          width: 6.w,
+        ),
+        OtpTextField(),
+      ],
+    );
   }
 }

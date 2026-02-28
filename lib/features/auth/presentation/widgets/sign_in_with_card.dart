@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_style.dart';
-import '../../../../gen/assets.gen.dart';
 
 class SignInWithCard extends StatelessWidget {
   final String title;
@@ -22,9 +21,16 @@ class SignInWithCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SvgPicture.asset(image),
-          SizedBox(width: 9.w,),
-          Text(title,style: AppTextStyle.text15Regular.copyWith(color: AppColors.darkGrayColor),)
-        ],),
+          SizedBox(
+            width: 9.w,
+          ),
+          Text(
+            title,
+            style: AppTextStyle.text15Regular
+                .copyWith(color: AppColors.darkGrayColor),
+          )
+        ],
+      ),
     );
   }
 }

@@ -16,7 +16,7 @@ class PasswordChangedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 22),
+        padding: EdgeInsets.symmetric(horizontal: 22.w),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -24,7 +24,8 @@ class PasswordChangedScreen extends StatelessWidget {
             SizedBox(
               height: 35.h,
             ),
-            Text(LocaleKeys.passwordChanged.tr(), style: AppTextStyle.text26Regular),
+            Text(LocaleKeys.passwordChanged.tr(),
+                style: AppTextStyle.text26Regular),
             Text(LocaleKeys.passwordChangedSuccess.tr(),
                 style: AppTextStyle.text15Regular
                     .copyWith(color: AppColors.darkGrayColor)),

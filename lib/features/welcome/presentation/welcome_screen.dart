@@ -1,10 +1,10 @@
+import 'package:bookia/core/helper/extensions.dart';
 import 'package:bookia/core/theme/app_text_style.dart';
 import 'package:bookia/core/widgets/app_button.dart';
-import 'package:bookia/features/auth/presentation/login_screen.dart';
-import 'package:bookia/features/auth/presentation/register_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../core/routing/routes.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../gen/locale_keys.g.dart';
 
@@ -22,7 +22,7 @@ class WelcomeScreen extends StatelessWidget {
               fit: BoxFit.cover),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 22),
+          padding: EdgeInsets.symmetric(horizontal: 22.w),
           child: Column(
             children: [
               SizedBox(
@@ -38,15 +38,13 @@ class WelcomeScreen extends StatelessWidget {
               ),
               Spacer(),
               AppButton(
-                  onTap: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginScreen())),
+                  onTap: () => context.pushNamed(Routes.loginScreen),
                   title: LocaleKeys.login.tr()),
               SizedBox(
                 height: 15.h,
               ),
               AppButton(
-                onTap: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => RegisterScreen())),
+                onTap: () => context.pushNamed(Routes.registerScreen),
                 title: LocaleKeys.register.tr(),
                 isPrimary: false,
               ),

@@ -15,7 +15,7 @@ class CreateNewPasswordScreen extends StatelessWidget {
     return Scaffold(
         body: SafeArea(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 22),
+        padding: EdgeInsets.symmetric(horizontal: 22.w),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           ArrowBackIcon(),
           SizedBox(
