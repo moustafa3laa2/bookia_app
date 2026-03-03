@@ -1,17 +1,16 @@
-import 'package:dio/dio.dart';
+import 'package:bookia/core/networking/api_constants.dart';
+import 'package:bookia/core/networking/dio_factory.dart';
 import 'package:flutter/cupertino.dart';
-import '../../../../core/app_constant.dart';
 
 class AuthRepo {
-  static final Dio _dio = Dio();
   static Future<bool> login(
       {required String email, required String password}) async {
     try {
-      final response = await _dio.post("${AppConstant.baseUrl}/login", data: {
+      final response = await DioFactory.dio?.post(ApiConstants.login, data: {
         "email": email,
         "password": password,
       });
-      if (response.statusCode == 200) {
+      if (response?.statusCode == 200) {
         return true;
       } else {
         return false;
@@ -22,17 +21,19 @@ class AuthRepo {
     }
   }
 
-
   static Future<bool> register(
-      {required String userName, required String email,required String password,required String confirmPassword}) async {
+      {required String userName,
+      required String email,
+      required String password,
+      required String confirmPassword}) async {
     try {
-      final response = await _dio.post("${AppConstant.baseUrl}/login", data: {
+      final response = await DioFactory.dio?.post(ApiConstants.register, data: {
         "name": userName,
         "email": email,
         "password": password,
         "password_confirmation": confirmPassword,
       });
-      if (response.statusCode == 200) {
+      if (response?.statusCode == 200) {
         return true;
       } else {
         return false;

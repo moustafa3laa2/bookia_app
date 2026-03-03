@@ -6,6 +6,7 @@ import 'package:bookia/features/auth/presentation/login_screen.dart';
 import 'package:bookia/features/auth/presentation/otp_verification_screen.dart';
 import 'package:bookia/features/auth/presentation/password_changed_screen.dart';
 import 'package:bookia/features/auth/presentation/register_screen.dart';
+import 'package:bookia/features/bottom_nav_bar/presentation/bottom_nav_bar_screen.dart';
 import 'package:bookia/features/home/presentation/home_screen.dart';
 import 'package:bookia/features/welcome/presentation/welcome_screen.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +39,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => PasswordChangedScreen());
       case Routes.homeScreen:
         return MaterialPageRoute(builder: (_) => HomeScreen());
+        case Routes.bottomNavBarScreen:
+        return MaterialPageRoute(builder: (_) => BottomNavBarScreen());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

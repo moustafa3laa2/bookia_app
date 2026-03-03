@@ -14,6 +14,18 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/Bookmark.svg
+  String get bookmark => 'assets/icons/Bookmark.svg';
+
+  /// File path: assets/icons/Category.svg
+  String get category => 'assets/icons/Category.svg';
+
+  /// File path: assets/icons/Home.svg
+  String get home => 'assets/icons/Home.svg';
+
+  /// File path: assets/icons/Profile.svg
+  String get profile => 'assets/icons/Profile.svg';
+
   /// File path: assets/icons/apple.svg
   String get apple => 'assets/icons/apple.svg';
 
@@ -23,15 +35,32 @@ class $AssetsIconsGen {
   /// File path: assets/icons/hidepassword.svg
   String get hidepassword => 'assets/icons/hidepassword.svg';
 
+  /// File path: assets/icons/search.svg
+  String get search => 'assets/icons/search.svg';
+
   /// File path: assets/icons/successmark.svg
   String get successmark => 'assets/icons/successmark.svg';
 
   /// List of all assets
-  List<String> get values => [apple, google, hidepassword, successmark];
+  List<String> get values => [
+        bookmark,
+        category,
+        home,
+        profile,
+        apple,
+        google,
+        hidepassword,
+        search,
+        successmark
+      ];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
+
+  /// File path: assets/images/cardimage.png
+  AssetGenImage get cardimage =>
+      const AssetGenImage('assets/images/cardimage.png');
 
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
@@ -45,7 +74,8 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/splash_android12.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [logo, onboardingimage, splashAndroid12];
+  List<AssetGenImage> get values =>
+      [cardimage, logo, onboardingimage, splashAndroid12];
 }
 
 class $AssetsTranslationsGen {
