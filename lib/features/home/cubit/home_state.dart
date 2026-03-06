@@ -11,5 +11,14 @@ final class GetHomeSlidersSuccess extends HomeState {
   final List<SliderItem> sliders;
   GetHomeSlidersSuccess(this.sliders);
 }
-
 final class GetHomeSlidersError extends HomeState {}
+
+
+final class GetHomeBooksLoading extends HomeState {}
+
+final class GetHomeBooksSuccess extends HomeState {
+  final List<Book>? books;
+  GetHomeBooksSuccess(this.books);
+}
+
+final class GetHomeBooksError extends HomeState {}

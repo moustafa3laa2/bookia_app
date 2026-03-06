@@ -1,11 +1,12 @@
+import 'package:bookia/features/home/data/models/book_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_style.dart';
-import '../../../../gen/assets.gen.dart';
 
 class BookCard extends StatelessWidget {
-  const BookCard({super.key});
+  final Book book;
+  const BookCard({super.key, required this.book});
 
   @override
   Widget build(BuildContext context) {
@@ -21,17 +22,16 @@ class BookCard extends StatelessWidget {
           Expanded(
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10.r),
-              child: Assets.images.cardimage.image(
-                fit: BoxFit.cover,
-                width: double.infinity,
-              ),
+              child:
+                Image.network(book.image??"")
+
             ),
           ),
 
           SizedBox(height: 6.h),
 
           Text(
-            "The Republic",
+            book.name??"",
             style: AppTextStyle.text18Regular,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
@@ -43,7 +43,7 @@ class BookCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "₹285",
+                "₹${book.price}",
                 style: AppTextStyle.text18Regular,
               ),
               SizedBox(
