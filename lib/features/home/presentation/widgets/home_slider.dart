@@ -1,8 +1,10 @@
 import 'package:bookia/features/home/cubit/home_cubit.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../core/theme/app_colors.dart';
 
@@ -21,8 +23,10 @@ class _HomeSliderState extends State<HomeSlider> {
     return BlocBuilder<HomeCubit, HomeState>(
       buildWhen: (prev,current)=> current is GetHomeSlidersLoading ||current is GetHomeSlidersSuccess ||current is GetHomeSlidersSuccess,
       builder: (context, state) {
-        if(state is GetHomeSlidersLoading){
-          return Center(child: CircularProgressIndicator(),);
+        if(state is GetHomeSlidersLoading || state is GetHomeBooksLoading){
+          return Skeletonizer(
+              enabled: true,
+              child: Container(color: Colors.grey,height: 200.h,width: double.infinity,));
         }else if(state is GetHomeSlidersSuccess){
           return Column(
             children: [

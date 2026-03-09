@@ -4,6 +4,7 @@ import 'package:bookia/features/home/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import 'book_card.dart';
 
@@ -19,9 +20,22 @@ class BooksGridView extends StatelessWidget {
           current is GetHomeBooksError,
       builder: (context, state) {
         if (state is GetHomeBooksLoading) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
+          return Expanded(
+              child: Skeletonizer(
+            enabled: true,
+            child: GridView.builder(
+                itemCount: 6,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 11.h,
+                    crossAxisSpacing: 11.w,
+                    childAspectRatio: 163 / 281),
+                itemBuilder: (context, index) => Container(
+                      height: 281,
+                      width: 163,
+                      color: Colors.grey,
+                    )),
+          ));
         } else if (state is GetHomeBooksSuccess) {
           return Expanded(
             child: GridView.builder(
@@ -33,7 +47,7 @@ class BooksGridView extends StatelessWidget {
                     childAspectRatio: 163 / 281),
                 itemBuilder: (context, index) {
                   return InkWell(
-                      onTap: ()=>context.pushNamed(Routes.bookDetailsScreen),
+                      onTap: () => context.pushNamed(Routes.bookDetailsScreen),
                       child: BookCard(book: state.books![index]));
                 }),
           );
