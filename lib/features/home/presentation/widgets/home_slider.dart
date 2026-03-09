@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/widgets/custom_image_network.dart';
 
 class HomeSlider extends StatefulWidget {
   const HomeSlider({super.key});
@@ -21,13 +22,20 @@ class _HomeSliderState extends State<HomeSlider> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
-      buildWhen: (prev,current)=> current is GetHomeSlidersLoading ||current is GetHomeSlidersSuccess ||current is GetHomeSlidersSuccess,
+      buildWhen: (prev, current) =>
+          current is GetHomeSlidersLoading ||
+          current is GetHomeSlidersSuccess ||
+          current is GetHomeSlidersSuccess,
       builder: (context, state) {
-        if(state is GetHomeSlidersLoading || state is GetHomeBooksLoading){
+        if (state is GetHomeSlidersLoading || state is GetHomeBooksLoading) {
           return Skeletonizer(
               enabled: true,
-              child: Container(color: Colors.grey,height: 200.h,width: double.infinity,));
-        }else if(state is GetHomeSlidersSuccess){
+              child: Container(
+                color: Colors.grey,
+                height: 200.h,
+                width: double.infinity,
+              ));
+        } else if (state is GetHomeSlidersSuccess) {
           return Column(
             children: [
               CarouselSlider(
@@ -47,13 +55,8 @@ class _HomeSliderState extends State<HomeSlider> {
                       return Padding(
                         padding: EdgeInsets.symmetric(horizontal: 8.w),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10.r),
-                          child: Image.network(
-                            state.sliders[index].image??"",
-                            fit: BoxFit.cover,
-                            width: double.infinity,
-                          ),
-                        ),
+                            borderRadius: BorderRadius.circular(10.r),
+                            child: CustomImageNetwork(imageUrl: state.sliders[index].image??"")),
                       );
                     },
                   );
@@ -71,8 +74,10 @@ class _HomeSliderState extends State<HomeSlider> {
                       radius: 10))
             ],
           );
-        }else {
-          return Center(child: Text("Error"),);
+        } else {
+          return Center(
+            child: Text("Error"),
+          );
         }
       },
     );

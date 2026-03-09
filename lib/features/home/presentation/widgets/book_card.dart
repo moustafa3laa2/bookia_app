@@ -1,3 +1,4 @@
+import 'package:bookia/core/widgets/custom_image_network.dart';
 import 'package:bookia/features/home/data/models/book_model.dart';
 import 'package:bookia/features/home/presentation/widgets/buy_price_row.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,8 @@ class BookCard extends StatelessWidget {
           Expanded(
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(10.r),
-                child: Image.network(book.image ?? "")),
+                child: CustomImageNetwork(imageUrl: book.image??""),
+            ),
           ),
           SizedBox(height: 6.h),
           Text(
