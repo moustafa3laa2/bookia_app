@@ -8,4 +8,5 @@ class Routes {
   static const String passwordChangedScreen = "/passwordChangedScreen";
   static const String homeScreen = "/homeScreen";
   static const String bottomNavBarScreen = "/bottomNavBarScreen";
+  static const String bookDetailsScreen = "/bookDetailsScreen";
 }

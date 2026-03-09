@@ -1,4 +1,5 @@
 import 'package:bookia/features/home/data/models/book_model.dart';
+import 'package:bookia/features/home/presentation/widgets/buy_price_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -21,53 +22,18 @@ class BookCard extends StatelessWidget {
         children: [
           Expanded(
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(10.r),
-              child:
-                Image.network(book.image??"")
-
-            ),
+                borderRadius: BorderRadius.circular(10.r),
+                child: Image.network(book.image ?? "")),
           ),
-
           SizedBox(height: 6.h),
-
           Text(
-            book.name??"",
+            book.name ?? "",
             style: AppTextStyle.text18Regular,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
-
           SizedBox(height: 8.h),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "₹${book.price}",
-                style: AppTextStyle.text18Regular,
-              ),
-              SizedBox(
-                height: 28.h,
-                width: 72.w,
-                child: InkWell(
-                  onTap: () {},
-                  child: Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.symmetric(vertical: 6.h),
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(4.r),
-                    ),
-                    child: Text(
-                      "Buy",
-                      style: AppTextStyle.text15Regular
-                          .copyWith(color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+          BuyPriceRow(price: "₹${book.price}", title: "Buy", priceTextStyle: AppTextStyle.text18Regular,buttonTextStyle: AppTextStyle.text15Regular.copyWith(color: Colors.white),buttonHeight: 28,buttonWidth: 72,buttonRadius: 4,)
         ],
       ),
     );

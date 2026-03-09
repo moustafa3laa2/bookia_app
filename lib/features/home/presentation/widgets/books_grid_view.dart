@@ -1,3 +1,5 @@
+import 'package:bookia/core/helper/extensions.dart';
+import 'package:bookia/core/routing/routes.dart';
 import 'package:bookia/features/home/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +32,9 @@ class BooksGridView extends StatelessWidget {
                     crossAxisSpacing: 11.w,
                     childAspectRatio: 163 / 281),
                 itemBuilder: (context, index) {
-                  return BookCard(book: state.books![index]);
+                  return InkWell(
+                      onTap: ()=>context.pushNamed(Routes.bookDetailsScreen),
+                      child: BookCard(book: state.books![index]));
                 }),
           );
         } else {

@@ -9,6 +9,8 @@ class ArrowBackIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 41.w,
+      height: 41.h,
       decoration: BoxDecoration(
           border: Border.all(color: AppColors.borderColor),
           borderRadius: BorderRadius.circular(12.r)),

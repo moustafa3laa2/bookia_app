@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 
-import '../../../../gen/assets.gen.dart';
 
 class HomeAppBar extends StatelessWidget {
-  const HomeAppBar({super.key});
+  final Widget widget1;
+  final Widget widget2;
+  const HomeAppBar({super.key, required this.widget1, required this.widget2});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Assets.images.logo.image(width: 100.w),
-        SvgPicture.asset(
-          Assets.icons.search,
-        ),
+       widget1,
+        widget2
       ],
     );
   }

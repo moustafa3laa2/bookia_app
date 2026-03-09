@@ -3,7 +3,9 @@ import 'package:bookia/features/home/presentation/widgets/home_app_bar.dart';
 import 'package:bookia/features/home/presentation/widgets/home_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import '../../../core/theme/app_text_style.dart';
+import '../../../gen/assets.gen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -14,7 +16,12 @@ class HomeScreen extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 13.w),
       child: Column(
         children: [
-          HomeAppBar(),
+          HomeAppBar(
+            widget1: Assets.images.logo.image(width: 100.w),
+            widget2: SvgPicture.asset(
+              Assets.icons.search,
+            ),
+          ),
           SizedBox(
             height: 25.h,
           ),
