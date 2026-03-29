@@ -2,8 +2,8 @@ import 'package:bookia/core/helper/extensions.dart';
 import 'package:bookia/core/routing/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../data/models/book_model.dart';
-import 'book_card.dart';
+import '../../features/home/data/models/book_model.dart';
+import '../../features/home/presentation/widgets/book_card.dart';
 
 class BooksGridView extends StatelessWidget {
   final List<Book>? books;
