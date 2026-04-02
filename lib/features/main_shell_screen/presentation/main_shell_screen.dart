@@ -1,3 +1,4 @@
+import 'package:bookia/features/cart/cubit/cart_cubit.dart';
 import 'package:bookia/features/cart/presentation/cart_screen.dart';
 import 'package:bookia/features/home/cubit/home_cubit.dart';
 import 'package:bookia/features/home/presentation/home_screen.dart';
@@ -20,11 +21,16 @@ class _MainShellScreenState extends State<MainShellScreen> {
   int currentIndex = 0;
   List<Widget> screens = [
     BlocProvider(
-      create: (context) => HomeCubit()..getHomeData(),
+      create: (context) =>
+      HomeCubit()
+        ..getHomeData(),
       child: HomeScreen(),
     ),
     WishlistScreen(),
-    CartScreen(),
+    BlocProvider(
+      create: (context) => CartCubit()..getCart(),
+      child: CartScreen(),
+    ),
     ProfileScreen()
   ];
 

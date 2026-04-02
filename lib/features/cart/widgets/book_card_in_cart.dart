@@ -1,10 +1,13 @@
+import 'package:bookia/features/cart/data/models/show_cart_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/theme/app_text_style.dart';
 
 class BookCardInCart extends StatelessWidget {
-  const BookCardInCart({super.key});
+  final ShowCartModel cart;
+  final int index;
+  const BookCardInCart({super.key, required this.cart, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +19,8 @@ class BookCardInCart extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.asset(
-              "assets/images/cardimage.png",
+            child: Image.network(
+              cart.data?.cartItems?[index].itemProductImage??"",
               width: 100.w,
               height: 118.h,
               fit: BoxFit.cover,
@@ -33,17 +36,20 @@ class BookCardInCart extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                     Text(
-                      "The Republic",
-                      style: AppTextStyle.text18Regular.copyWith(color: Colors.grey),
-                    ),
+                     Expanded(
+                       child: Text(
+                       cart.data?.cartItems?[index].itemProductName??"" ,overflow: TextOverflow.ellipsis,maxLines: 1,
+                        style: AppTextStyle.text18Regular.copyWith(color: Colors.grey),
+                                           ),
+                     ),
+
                     Container(
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(color: Colors.black26),
                       ),
                       child: const Padding(
-                        padding: EdgeInsets.all(4.0),
+                        padding: EdgeInsets.all(4),
                         child: Icon(Icons.close, size: 16),
                       ),
                     )
@@ -53,7 +59,7 @@ class BookCardInCart extends StatelessWidget {
                  SizedBox(height: 6.h),
 
                  Text(
-                  "₹285",
+                  "₹${cart.data?.cartItems?[index].itemProductPrice}",
                   style: AppTextStyle.text15Regular.copyWith(fontSize: 16)
                 ),
 
