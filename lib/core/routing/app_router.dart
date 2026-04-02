@@ -6,7 +6,9 @@ import 'package:bookia/features/auth/presentation/login_screen.dart';
 import 'package:bookia/features/auth/presentation/otp_verification_screen.dart';
 import 'package:bookia/features/auth/presentation/password_changed_screen.dart';
 import 'package:bookia/features/auth/presentation/register_screen.dart';
-import 'package:bookia/features/home/presentation/book_details_screen.dart';
+import 'package:bookia/features/book_details/cubit/show_book_details_cubit.dart';
+import 'package:bookia/features/home/cubit/home_cubit.dart';
+import 'package:bookia/features/book_details/presentation/book_details_screen.dart';
 import 'package:bookia/features/home/presentation/home_screen.dart';
 import 'package:bookia/features/search/cubit/search_cubit.dart';
 import 'package:bookia/features/search/presentation/search_screen.dart';
@@ -46,13 +48,19 @@ class AppRouter {
       case Routes.bottomNavBarScreen:
         return MaterialPageRoute(builder: (_) => MainShellScreen());
       case Routes.bookDetailsScreen:
-        return MaterialPageRoute(builder: (_) => BookDetailsScreen());
-      case Routes.searchScreen:
+        int bookId = settings.arguments as int;
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
-                  create: (context) => SearchCubit(),
-                  child: SearchScreen(),
+                  create: (context) =>
+                      ShowBookDetailsCubit()..getBookDetails(bookId),
+                  child: BookDetailsScreen(),
                 ));
+      case Routes.searchScreen:
+        return MaterialPageRoute(
+            builder: (_) => MultiBlocProvider(providers: [
+                  BlocProvider(create: (context) => SearchCubit()),
+                  BlocProvider(create: (context) => HomeCubit()),
+                ], child: SearchScreen()));
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

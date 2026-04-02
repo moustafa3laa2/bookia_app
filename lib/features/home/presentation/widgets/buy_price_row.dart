@@ -11,7 +11,8 @@ class BuyPriceRow extends StatelessWidget {
   final double buttonHeight;
   final double buttonWidth;
   final double buttonRadius;
-  const BuyPriceRow({super.key, required this.price, required this.title, required this.buttonHeight, required this.buttonWidth, required this.buttonRadius, required this.priceTextStyle, required this.buttonTextStyle});
+  final void Function()? onTap;
+  const BuyPriceRow({super.key, required this.price, required this.title, required this.buttonHeight, required this.buttonWidth, required this.buttonRadius, required this.priceTextStyle, required this.buttonTextStyle, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class BuyPriceRow extends StatelessWidget {
           height: buttonHeight.h,
           width: buttonWidth.w,
           child: InkWell(
-            onTap: () {},
+            onTap: onTap,
             child: Container(
               alignment: Alignment.center,
               padding: EdgeInsets.symmetric(vertical: 6.h),

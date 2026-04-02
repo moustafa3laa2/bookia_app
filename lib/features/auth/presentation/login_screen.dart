@@ -131,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ));
                   } else if (state is AuthSuccessState) {
-                    context.pushNamedAndRemoveUntil(Routes.bottomNavBarScreen);
+                    context.pushNamedAndRemoveUntil(Routes.bottomNavBarScreen, predicate: (route) => false);
                   }
                 },
                 child: AppButton(

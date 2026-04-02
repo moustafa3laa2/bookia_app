@@ -99,7 +99,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                           ));
                 } else if (state is AuthSuccessState) {
-                  context.pushNamedAndRemoveUntil(Routes.loginScreen);
+                  context.pushNamedAndRemoveUntil(Routes.loginScreen,predicate: (route) => false);
                 }
               },
               child: AppButton(

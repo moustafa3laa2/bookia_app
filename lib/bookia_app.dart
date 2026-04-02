@@ -5,7 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/routing/routes.dart';
 
 class BookiaApp extends StatelessWidget {
-  const BookiaApp({super.key});
+  final String? token;
+  const BookiaApp({super.key, this.token});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,16 @@ class BookiaApp extends StatelessWidget {
           theme: ThemeData(fontFamily: "DMSerifDisplay"),
           debugShowCheckedModeBanner: false,
           onGenerateRoute: AppRouter.generateRoute,
-          initialRoute: Routes.welcomeScreen,
+          initialRoute: startRoute(),
         ));
+  }
+
+  String startRoute() {
+    if (token == null) {
+      return Routes.welcomeScreen;
+    } else {
+
+      return Routes.bottomNavBarScreen;
+    }
   }
 }

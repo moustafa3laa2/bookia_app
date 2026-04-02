@@ -52,7 +52,7 @@ class ForgetPasswordScreen extends StatelessWidget {
           CustomText(
             text1: LocaleKeys.rememberPassword.tr(),
             text2: LocaleKeys.login.tr(),
-            onTap: () => context.pushNamedAndRemoveUntil(Routes.loginScreen),
+            onTap: () => context.pushNamedAndRemoveUntil(Routes.loginScreen,predicate:  (route) => false),
           ),
           SizedBox(
             height: 26.h,

@@ -8,7 +8,8 @@ import '../../../../core/theme/app_text_style.dart';
 
 class BookCard extends StatelessWidget {
   final Book book;
-  const BookCard({super.key, required this.book});
+  final void Function()? onTap;
+  const BookCard({super.key, required this.book, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class BookCard extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           SizedBox(height: 8.h),
-          BuyPriceRow(price: "₹${book.price}", title: "Buy", priceTextStyle: AppTextStyle.text18Regular,buttonTextStyle: AppTextStyle.text15Regular.copyWith(color: Colors.white),buttonHeight: 28,buttonWidth: 72,buttonRadius: 4,)
+          BuyPriceRow(price: "₹${book.price}", title: "Buy", priceTextStyle: AppTextStyle.text18Regular,buttonTextStyle: AppTextStyle.text15Regular.copyWith(color: Colors.white),buttonHeight: 28,buttonWidth: 72,buttonRadius: 4,onTap: onTap,)
         ],
       ),
     );

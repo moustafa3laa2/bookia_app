@@ -10,6 +10,9 @@ class DioFactory {
         connectTimeout: Duration(
           seconds: 30,
         ),
+        headers: {
+          "Authorization" : "Bearer ${ApiConstants.token}"
+        }
       ),
     );
   }
